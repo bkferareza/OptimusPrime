@@ -1,0 +1,90 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Webform_App.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" /> 
+    <link href="~/Images/abstergo.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <asp:PlaceHolder runat="server">        
+        <script src="<%: ResolveUrl("~/Scripts/modernizr-2.5.3.js") %>"></script>
+            <script src="<%: ResolveUrl("~/Scripts/jquery-1.9.1.js")%>"></script>
+            <script src="<%: ResolveUrl("~/Scripts/bootstrap.js")%>"></script>
+            <script src="<%: ResolveUrl("~/Scripts/toastr.js")%>"></script>
+    </asp:PlaceHolder>
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body class="background-image">
+    <div class="container-fluid">
+    <form id="Form1" runat="server">
+            <nav class="navbar navbar-default text-center">
+                <div class="container-fluid">
+                        <div class="navbar-header" id="site_logo">
+                             <p class="site-title">
+                                 <a id="A1" runat="server" href="~/">
+                                     <img class="img-responsive" style="max-height:50px;" src="<%:ResolveUrl("Abstergo.png") %>"/></a>
+                             </p>      
+			            </div>
+                        <div class="navbar-form navbar-right">
+                            <section id="login">
+                                 <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
+                                     <AnonymousTemplate>
+                                          <div class="btn-toolbar" role="toolbar">
+                                               <div class="btn-group">
+                                                   <a id="registerLink" runat="server" class="btn btn-info btn-default" href="~/Account/Register.aspx">Register</a>
+                                                   <a id="loginLink" runat="server" class="btn btn-info btn-default" href="~/Account/Login.aspx">Log in</a>
+                                                </div>
+                                                <div class="btn-group">
+                                                   <button type="button" 
+                                                      class="btn btn-info dropdown-toggle" 
+                                                      data-toggle="dropdown"
+                                                      id="dropdownMenu1"
+                                                      aria-expanded="false">Menu<span class="caret"></span>
+                                                    </button>
+                                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"">
+                                                          <li role="presentation"><a id="A3" role="menuitem" runat="server" href="~/">Home</a></li>
+                                                          <li role="presentation"><a id="A4" role="menuitem" runat="server" href="~/About.aspx">About</a></li>
+                                                          <li role="presentation"><a id="A5" role="menuitem" runat="server" href="~/Contact.aspx">Contact</a></li>
+                                                     </ul>
+                                                </div>
+                                             </div>
+                                     </AnonymousTemplate>
+                                   <LoggedInTemplate>
+                                      <p>
+                                       Hello, <a id="A2" runat="server" class="username" href="~/Account/Manage.aspx" title="Manage your account">
+                                       <asp:LoginName ID="LoginName1" runat="server" CssClass="username" />
+                                        </a>!
+                                      <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
+                                    </p>
+                                </LoggedInTemplate>
+                        </asp:LoginView>
+                     </section>
+                   </div>
+                </div>
+            </nav>
+   
+            <div id="body" class="container">
+                <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+                <section class="content-wrapper main-content clear-fix">
+                    <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                </section>
+            </div>
+
+            <footer class="footer">
+                <div class="navbar-fixed-bottom">
+                    <div class="pull-right">
+                        <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                    </div>
+                </div>
+            </footer>
+    </form>
+    </div>
+    
+
+    
+</body>
+</html>
